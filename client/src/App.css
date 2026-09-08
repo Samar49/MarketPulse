@@ -1489,11 +1489,24 @@
 
   .ai-column {
     position: static;
-    height: 640px;
+    height: auto;
   }
 
   .ai-chat-section {
-    height: 100%;
+    /*
+     * .ai-chat-section is `position: fixed` with a hardcoded
+     * 380px width, so it never obeyed the grid/flex reflow above —
+     * it stayed pinned top-right at a fixed width on every screen
+     * size, including phones, which broke the mobile layout.
+     * Switch it back into normal document flow here so it stacks
+     * under the main content instead.
+     */
+    position: static;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    height: 640px;
   }
 }
 
@@ -1532,6 +1545,14 @@
 
   .market-grid {
     grid-template-columns: 1fr;
+  }
+
+  .global-markets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-chat-section {
+    height: 480px;
   }
 }
 
